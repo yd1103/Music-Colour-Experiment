@@ -42,10 +42,12 @@
       {stimulus: 'jspsych-6-2/examples/sound/autumn_cut2.wav'}
     ]
   }
+  
+    timeline.push(block_1);
 
   jsPsych.init({
     display_element: $('#jspsych-target'),
-    timeline: [block_1],
+    timeline: timeline,
     on_finish: function() {jsPsych.data.displayData();}
   });
 
