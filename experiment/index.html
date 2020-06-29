@@ -17,12 +17,28 @@
   for chrome, launch the browser from the command-line:
   chrome --allow-file-access-from-files
   */
+  var trail_one = {
+    type:'html-button-response',
+    stimulus: '<p>Active or Passive?</p>',
+    choices: ['Active', 'Passive'],
+    prompt: "<p>Active or Passive?</p>",
+  };
 
+  var trail_two = {
+    type:'html-button-response',
+    stimulus: '<p>Agitated or Calm?</p>',
+    choices: ['Agitated', 'Calm'],
+    prompt: "<p>Agitated or Calm?</p>"
+  };  
+    
+    timeline.push(trail_one);
+    timeline.push(trail_two);
+    
   var block_1 = {
     type: 'single-audio',
     timeline: [
-      {stimulus: '../experiment/jspsych-6-2/examples/sound/autumn_cut1.wav'},
-      {stimulus: '../experiment/jspsych-6-2/examples/sound/autumn_cut2.wav'}
+      {stimulus: 'jspsych-6-2/examples/sound/autumn_cut1.wav'},
+      {stimulus: 'jspsych-6-2/examples/sound/autumn_cut2.wav'}
     ]
   }
 
