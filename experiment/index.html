@@ -1,105 +1,36 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html>
+  <head>
+    <script src="js/jquery.min.js"></script>
+    <script src="../jspsych.js"></script>
+    <script src="../plugins/jspsych-single-audio.js"></script>
+    <script src="jspsych-single-audio.js"></script>
+    <link rel="stylesheet" href="../css/jspsych.css"></link>
+  </head>
+  <body>
+    <div id="jspsych-target"></div>
+  </body>
+  <script>
 
-<head>
+  /*
+  this demo will only work if run online or with special permissions enable offline
+  for chrome, launch the browser from the command-line:
+  chrome --allow-file-access-from-files
+  */
 
-<meta charset="utf-8" />
-<meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<meta name="author" content="Your Name" />
-
-
-<title>Experiment Name</title>
-
-
-
-
-
-
-<link rel="stylesheet" href="jspsych-6-2\css\jspsych.css" type="text/css" />
-
-
-
-
-</head>
-
-<body>
-
-
-
-
-<h1 class="title toc-ignore">Experiment Name</h1>
-<h4 class="author">Your Name</h4>
-
-
-
-<script src="jspsych-6-2/jspsych.js"></script>
-<script src="jspsych-6-2/plugins/jspsych-html-keyboard-response.js"></script>
-<script src="jspsychr/jspsychr.js"></script>
-<script src="jspsych-6-2/plugins/jspsych-image-keyboard-response.js"></script>
-<script src="jspsych-6-2/plugins/jspsych-fullscreen.js"></script>
-<script src="jspsych-6-2/plugins/jspsych-instructions.js"></script>
-<script src="jspsych-6-2/plugins/jspsych-survey-likert.js"></script>
-<script>  </script>
-<script type="text/javascript">
-/* Note this is a js (javascript) code chunk
-
-/* experiment parameters */
-var reps_per_trial_type = 1;
-
-/*set up welcome block*/
-var welcome = {
-  type: "html-keyboard-response",
-  stimulus: "Welcome to the experiment. Press any key to begin."
-};
-
-/*set up instructions block*/
-var instructions = {
-  type: "html-keyboard-response",
-  stimulus: "<p>In this task, you will see word in a color</p>"+
-    "<p style='color:red;font-size:60pt;'>BLUE</p>"+
-    "<p>Press r, g, b, or y to identify the color, not the word</p>"+
-    "<p>E.g., press r for red in this example</p>"+
-    "<p>Press any key to begin.</p>",
-  post_trial_gap: 1000
-};
-
-/* defining test timeline */
-var test = {
-  timeline: [{
+  var block_1 = {
     type: 'single-audio',
-    stimulus: 'jspsych-6-2/examples/sound/autumn_cut1.wav',
-    prompt: "Hit Space to Begin"
-    }]
-  };
+    timeline: [
+      {stimulus: 'sound/autumn_cut1.wav'},
+      {stimulus: 'sound/autumn_cut2.wav'}
+    ]
+  }
 
-/*set up experiment structure*/
-var timeline = [];
-timeline.push(welcome);
-timeline.push(instructions);
-timeline.push(test);
+  jsPsych.init({
+    display_element: $('#jspsych-target'),
+    timeline: [block_1],
+    on_finish: function() {jsPsych.data.displayData();}
+  });
 
-/*start experiment*/
-jsPsych.init({
-  timeline: timeline,
-  default_iti: 500,
-  preload_audio: all_audio_files,
-  use_webaudio: false,
-  on_finish: function() {
-        jsPsych.data.displayData();
-    }
-});
-</script>
-
-
-
-<!-- code folding -->
-
-
-
-</body>
+  </script>
 </html>
