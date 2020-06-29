@@ -85,8 +85,11 @@ timeline.push(test);
 
 /*start experiment*/
 jsPsych.init({
-    timeline: timeline,
-    on_finish: function() {
+  timeline: timeline,
+  default_iti: 500,
+  preload_audio: all_audio_files,
+  use_webaudio: false,
+  on_finish: function() {
         jsPsych.data.displayData();
     }
 });
