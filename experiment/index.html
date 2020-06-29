@@ -1,54 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <script src="js/jquery.min.js"></script>
     <script src="../jspsych.js"></script>
+    <script src="../plugins/jspsych-audio-button-response.js"></script>
     <script src="../plugins/jspsych-html-button-response.js"></script>
-    <script src="../plugins/jspsych-single-audio.js"></script>
-    <script src="jspsych-single-audio.js"></script>
     <link rel="stylesheet" href="../css/jspsych.css"></link>
   </head>
-  <body>
-    <div id="jspsych-target"></div>
-  </body>
+  <body></body>
   <script>
 
-  /*
-  this demo will only work if run online or with special permissions enable offline
-  for chrome, launch the browser from the command-line:
-  chrome --allow-file-access-from-files
-  */
-  var trail_one = {
-    type:'html-button-response',
-    stimulus: '<p>Active or Passive?</p>',
-    choices: ['Active', 'Passive'],
-    prompt: "<p>Active or Passive?</p>",
-  };
+  var timeline = [];
 
-  var trail_two = {
-    type:'html-button-response',
-    stimulus: '<p>Agitated or Calm?</p>',
-    choices: ['Agitated', 'Calm'],
-    prompt: "<p>Agitated or Calm?</p>"
-  };  
-    
-    timeline.push(trail_one);
-    timeline.push(trail_two);
-    
-  var block_1 = {
-    type: 'single-audio',
-    timeline: [
-      {stimulus: 'jspsych-6-2/examples/sound/autumn_cut1.wav'},
-      {stimulus: 'jspsych-6-2/examples/sound/autumn_cut2.wav'}
-    ]
-  }
-  
-    timeline.push(block_1);
+  timeline.push({
+    type: 'html-button-response',
+    stimulus: 'Recent versions of Chrome require the user to interact with a page before it can play audio. '+
+    'Clicking the button below counts as an interaction. Be aware of this when planning audio experiments if '+
+    'you want the first trial to include audio.',
+    choices: ['Continue']
+  });
+
+  timeline.push({
+    type: 'audio-button-response',
+    stimulus: 'sound/speech_green.mp3',
+    choices: ['Green', 'Blue', 'Red'],
+    choices: ['Green', 'Blue', 'Red'],
+    choices: ['Green', 'Blue', 'Red'],
+    prompt: "<p>What word was said?</p>"
+  });
+
+  timeline.push({
+    type: 'audio-button-response',
+    stimulus: 'sound/speech_red.mp3',
+    choices: ['Green', 'Blue', 'Red'],
+    trial_duration: 2000,
+    response_ends_trial: false,
+    prompt: "<p>What word was said? (trial ends after 2s)</p>"
+  });
 
   jsPsych.init({
-    display_element: $('#jspsych-target'),
     timeline: timeline,
-    on_finish: function() {jsPsych.data.displayData();}
+    use_webaudio: false,
+    on_finish: function(){jsPsych.data.displayData();}
   });
 
   </script>
