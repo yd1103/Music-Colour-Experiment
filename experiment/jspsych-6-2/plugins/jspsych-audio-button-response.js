@@ -17,44 +17,6 @@ jsPsych.plugins["audio-button-response"] = (function() {
 		name: 'audio-button-response',
 		description: '',
 		parameters: {
-      questions: {
-        type: jsPsych.plugins.parameterType.COMPLEX,
-        array: true,
-        pretty_name: 'Questions',
-        nested: {
-          prompt: {
-            type: jsPsych.plugins.parameterType.STRING,
-            pretty_name: 'Prompt',
-            default: undefined,
-            description: 'The strings that will be associated with a group of options.'
-          },
-          options: {
-            type: jsPsych.plugins.parameterType.STRING,
-            pretty_name: 'Options',
-            array: true,
-            default: undefined,
-            description: 'Displays options for an individual question.'
-          },
-          required: {
-            type: jsPsych.plugins.parameterType.BOOL,
-            pretty_name: 'Required',
-            default: false,
-            description: 'Subject will be required to pick an option for each question.'
-          },
-          horizontal: {
-            type: jsPsych.plugins.parameterType.BOOL,
-            pretty_name: 'Horizontal',
-            default: false,
-            description: 'If true, then questions are centered and options are displayed horizontally.'
-          },
-          name: {
-            type: jsPsych.plugins.parameterType.STRING,
-            pretty_name: 'Question Name',
-            default: '',
-            description: 'Controls the name of data values associated with this question'
-          }
-        }
-      },
 			stimulus: {
 				type: jsPsych.plugins.parameterType.AUDIO,
         pretty_name: 'Stimulus',
@@ -191,7 +153,7 @@ jsPsych.plugins["audio-button-response"] = (function() {
       // disable all the buttons after a response
       var btns = document.querySelectorAll('.jspsych-audio-button-response-button button');
       for(var i=0; i<btns.length; i++){
-        btns[i].removeEventListener('click');
+        //btns[i].removeEventListener('click');
         btns[i].setAttribute('disabled', 'disabled');
       }
 
@@ -209,7 +171,7 @@ jsPsych.plugins["audio-button-response"] = (function() {
 				source.stop();
 				source.onended = function() { }
 			} else {
-			//	audio.pause();
+				audio.pause();
 				audio.removeEventListener('ended', end_trial);
 			}
 
@@ -235,7 +197,6 @@ jsPsych.plugins["audio-button-response"] = (function() {
 
 		// start audio
     if(context !== null){
-      context.resume();
       startTime = context.currentTime;
       source.start(startTime);
     } else {
