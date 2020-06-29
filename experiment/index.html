@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../jspsych.js"></script>
-    <script src="../plugins/jspsych-audio-button-response.js"></script>
-    <script src="../plugins/jspsych-html-button-response.js"></script>
-    <link rel="stylesheet" href="../css/jspsych.css"></link>
+    <script src="jspsych-6-2/jspsych.js"></script>
+    <script src="jspsych-6-2/plugins/jspsych-audio-button-response.js"></script>
+    <script src="jspsych-6-2/plugins/jspsych-html-button-response.js"></script>
+    <link rel="stylesheet" href="jspsych-6-2/css/jspsych.css"></link>
   </head>
   <body></body>
   <script>
@@ -21,16 +21,14 @@
 
   timeline.push({
     type: 'audio-button-response',
-    stimulus: 'sound/speech_green.mp3',
-    choices: ['Green', 'Blue', 'Red'],
-    choices: ['Green', 'Blue', 'Red'],
+    stimulus: 'jspsych-6-2/examples/sound/speech_green.mp3',
     choices: ['Green', 'Blue', 'Red'],
     prompt: "<p>What word was said?</p>"
   });
 
   timeline.push({
     type: 'audio-button-response',
-    stimulus: 'sound/speech_red.mp3',
+    stimulus: 'jspsych-6-2/examples/sound/speech_red.mp3',
     choices: ['Green', 'Blue', 'Red'],
     trial_duration: 2000,
     response_ends_trial: false,
