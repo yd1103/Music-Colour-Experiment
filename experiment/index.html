@@ -12,10 +12,10 @@
 var timeline = [];
 
 var trial_parameters = [
-  { audio: 'sound/tone.mp3', images: ['1', '2', '3', '4'], correct_choice: 0},
-  { audio: 'sound/tone.mp3', images: ['5', '6', '7', '8'], correct_choice: 1},
-  { audio: 'sound/tone.mp3', images: ['9', '10', '11', '12'], correct_choice: 2},
-  { audio: 'sound/tone.mp3', images: ['1', '5', '7', '11'], correct_choice: 3}
+  { audio: 'audio/tone.mp3', images: ['1', '2', '3', '4'], correct_choice: 0},
+  { audio: 'audio/tone.mp3', images: ['5', '6', '7', '8'], correct_choice: 1},
+  { audio: 'audio/tone.mp3', images: ['9', '10', '11', '12'], correct_choice: 2},
+  { audio: 'audio/tone.mp3', images: ['1', '5', '7', '11'], correct_choice: 3}
 ]
 
 var trial = {
@@ -34,7 +34,7 @@ timeline.push(trial);
 
 jsPsych.init({
   timeline: timeline,
-  preload_audio: ['sound/autumn_cut1.wav'],
+  preload_audio: ['audio/tone.mp3'],
   preload_images: ['img/1.gif','img/2.gif', 'img/3.gif', 'img/4.gif', 'img/5.gif','img/6.gif', 'img/7.gif', 'img/8.gif','img/9.gif','img/10.gif', 'img/11.gif', 'img/12.gif']
 })
 
