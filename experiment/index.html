@@ -1,28 +1,62 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://github.com/yd1103/Music-Colour-Experiment/tree/master/experiment/jspsych-6-2/jspsych.js"></script>
-    <script src="https://github.com/yd1103/Music-Colour-Experiment/tree/master/experiment/jspsych-6-2/plugins/jspsych-audio-button-response.js"></script>
-    <script src="https://github.com/yd1103/Music-Colour-Experiment/tree/master/experiment/jspsych-6-2/plugins/jspsych-html-button-response.js"></script>
-    <link rel="stylesheet" href="https://github.com/yd1103/Music-Colour-Experiment/tree/master/experiment/jspsych-6-2/css/jspsych.css"></link>
+    <script src="jquery.min.js"></script>
+    <script src="../jspsych.js"></script>
+    <script src="../jspsych-button-response-audio.js"></script>
+    <link rel="stylesheet" href="../css/jspsych.css"></link>
   </head>
-  <body></body>
+
+  <body><p>If you are seeing this message, then you are probably running this example file offline.
+    Loading the audio files offline requires running your browser in a special mode.
+    See <a href="https://stackoverflow.com/questions/4819060/allow-google-chrome-to-use-xmlhttprequest-to-load-a-url-from-a-local-file">this Q&A</a>
+    for examples of how to get this working with Chrome. Other browsers have similar features that you can find more information on via Google.</p></body>
+
   <script>
 
-  var timeline = [];
+  /*
+  adapted by Becky Gilbert based on Josh de Leeuw's button-response plugin: https://github.com/jspsych/jsPsych/tree/master/docs/markdown_docs/plugins
 
-  timeline.push({
-    type: 'html-button-response',
-    stimulus: 'Recent versions of Chrome require the user to interact with a page before it can play audio. '+
-    'Clicking the button below counts as an interaction. Be aware of this when planning audio experiments if '+
-    'you want the first trial to include audio.',
-    choices: ['Continue']
-  });
+  this demo will only work if run online or with special permissions enable offline
+  for chrome, launch the browser from the command-line:
+  chrome --allow-file-access-from-files
+  */
+
+  var trial1 = {
+    type: 'button-response-audio',
+    stimulus: "sound/autumn_cut1.wav", 
+    choices: ["Yes", "No"],
+    response_ends_trial: true,
+    trial_ends_after_audio: false,
+    ignore_responses_during_audio: false,
+    prompt: '<p>Does this sentence make sense?</p><p><span style="color:#FF0000;">A response will end the trial, even if the audio is still playing.<br/>There is no time limit for a response,<br/>so the trial will not end until a response is made.</span></p>'
+  };
+
+  var trial2 = {
+    type: 'button-response-audio',
+    stimulus: "sound/autumn_cut1.wav", 
+    choices: ["Now"],
+    response_ends_trial: false,
+    trial_ends_after_audio: true,
+    ignore_responses_during_audio: false,
+    prompt: '<p>Press the "now" button as soon as you hear the word "carrots".</p><p><span style="color:#FF0000;">A response will not end the trial.<br/>This trial will end when the audio file is finished playing.</span></p>'
+  };
+
+  var trial3 = {
+    type: 'button-response-audio',
+    stimulus: "sound/autumn_cut1.wav", 
+    choices: ["Yes","No"],
+    response_ends_trial: true,
+    trial_ends_after_audio: false,
+    ignore_responses_during_audio: true, 
+    timing_response: 10000,
+    prompt: '<p>Does this sentence make sense?</p><p><span style="color:#FF0000;">Now responses are not allowed while the audio is playing.<br/>This trial will end when a response is made or the 10 second time limit is up,<br/>whichever comes first.</span></p>'
+  };
 
   jsPsych.init({
-    timeline: timeline,
-    use_webaudio: false,
-    on_finish: function(){jsPsych.data.displayData();}
+    timeline: [trial1, trial2, trial3],
+    default_iti: 1000,
+    on_finish: function() {jsPsych.data.displayData();}
   });
 
   </script>
